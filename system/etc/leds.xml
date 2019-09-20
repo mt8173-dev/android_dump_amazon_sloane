@@ -1,0 +1,81 @@
+<leds platform="sloane">
+  <dir path="/sys/devices/platform/leds-mt65xx/leds/isink">
+    <file name="led"        path="led_pattern" />
+    <file name="brightness" path="step_current" />
+  </dir>
+
+  <pattern name="off">
+    <file name="led">0</file>
+  </pattern>
+  <pattern name="status_solid">
+    <file name="led">3</file>
+  </pattern>
+  <pattern name="status_breathe">
+    <file name="led">5</file>
+  </pattern>
+  <pattern name="status_blink">
+    <file name="led">1</file>
+  </pattern>
+  <pattern name="error_solid">
+    <file name="led">4</file>
+  </pattern>
+  <pattern name="error_breathe">
+    <file name="led">6</file>
+  </pattern>
+  <pattern name="error_blink">
+    <file name="led">2</file>
+  </pattern>
+  <pattern name="status_dim">
+    <file name="led">3</file>
+    <file name="brightness">0x0 2</file>
+  </pattern>
+
+  <state name="BOOTING"              pattern="status_breathe" priority="1000" timeout="0" />
+  <state name="NOT_CONNECTED"        pattern="error_breathe"  priority="900"  timeout="0" />
+  <state name="TEMP_WARNING"         pattern="error_solid"    priority="800"  timeout="0" />
+  <state name="BT_DISCOVERING"       pattern="status_breathe" priority="720"  timeout="60000" />
+  <state name="BT_PAIRING"           pattern="status_blink"   priority="710"  timeout="60000" />
+  <state name="BT_CONNECTING"        pattern="status_blink"   priority="700"  timeout="60000" />
+  <state name="FACTORY_RESET"        pattern="error_blink"    priority="600"  timeout="60000" />
+  <state name="CYCLE_RESOLUTIONS"    pattern="error_blink"    priority="500"  timeout="140000" />
+  <state name="INPUT_EVENT_RECEIVED" pattern="status_dim"     priority="450"  timeout="0" />
+  <state name="STANDBY"              pattern="off"            priority="400"  timeout="0" />
+
+  <intent action="android.intent.action.BOOT_COMPLETED">
+    <deactivate state="BOOTING" />
+  </intent>
+  <intent action="com.amazon.tv.networkmonitor.INTERNET_DOWN">
+    <activate state="NOT_CONNECTED" />
+  </intent>
+  <intent action="com.amazon.tv.networkmonitor.INTERNET_UP">
+    <deactivate state="NOT_CONNECTED" />
+  </intent>
+  <intent action="com.amazon.tv.settings.BACKUP_AND_RESET_SETTINGS_FROM_REMOTE">
+    <activate state="FACTORY_RESET" />
+  </intent>
+  <intent action="com.amazon.tv.settings.BACKUP_AND_RESET_CANCELED">
+    <deactivate state="FACTORY_RESET" />
+  </intent>
+  <intent action="com.amazon.intent.action.RESOLUTION_SWITCHER">
+    <activate state="CYCLE_RESOLUTIONS" />
+  </intent>
+  <intent action="android.bluetooth.adapter.action.DISCOVERY_STARTED">
+    <activate state="BT_DISCOVERING" />
+  </intent>
+  <intent action="android.bluetooth.adapter.action.DISCOVERY_FINISHED">
+    <deactivate state="BT_DISCOVERING" />
+  </intent>
+  <intent action="android.bluetooth.device.action.BOND_STATE_CHANGED">
+    <activate state="BT_PAIRING" extra="android.bluetooth.device.extra.BOND_STATE" type="Integer" value="11"/>
+    <deactivate state="BT_PAIRING" extra="android.bluetooth.device.extra.PREVIOUS_BOND_STATE" type="Integer" value="11"/>
+  </intent>
+  <intent action="android.bluetooth.adapter.action.CONNECTION_STATE_CHANGED">
+    <activate state="BT_CONNECTING" extra="android.bluetooth.adapter.extra.CONNECTION_STATE" type="Integer" value="1" /> 
+    <deactivate state="BT_CONNECTING" extra="android.bluetooth.adapter.extra.PREVIOUS_CONNECTION_STATE" type="Integer" value="1" />
+  </intent>
+  <intent action="com.amazon.android.service.wifi.CONNECTION_STATUS">
+    <deactivate state="BT_CONNECTING" />
+    <activate state="BT_CONNECTING" extra="connection_state" type="Integer" value="1" />
+  </intent>
+
+</leds>
