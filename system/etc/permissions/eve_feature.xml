@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Copyright (c) 2016 - 2018 Amazon.com, Inc. or its affiliates.  All rights reserved.
+    Copyright (c) 2016 - 2019 Amazon.com, Inc. or its affiliates.  All rights reserved.
     PROPRIETARY/CONFIDENTIAL.  USE IS SUBJECT TO LICENSE TERMS.
 -->
 <permissions>
@@ -13,4 +13,5 @@
     <feature name="fireos.software.eve.fluidity" />
     <feature name="fireos.software.eve.launch" />
     <feature name="fireos.software.eve.memory" />
+    <feature name="fireos.software.eve.service" />
 </permissions>

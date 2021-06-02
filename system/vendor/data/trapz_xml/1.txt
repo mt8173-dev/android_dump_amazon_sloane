@@ -9,11 +9,11 @@
       <component cat="0" fullSymbol="TRAPZ_KERN_SCHED" id="2" name="Scheduler" symbol="SCHED">
         <description>Scheduler component traces all context switches</description>
         <component cat="0" fullSymbol="TRAPZ_KERN_SCHED_IDLE" id="3" name="Idle" symbol="IDLE"/>
-        <trace file="kernel/mediatek/mt8173/3.10/kernel/sched/core.c" id="0" name="CtxSw" symbol="CtxSw">
-          <description>Logs prev and next pids on a context switch.</description>
-        </trace>
-        <trace file="kernel/mediatek/mt8173/3.10/fs/exec.c" id="1" name="TaskComm" symbol="TaskComm">
+        <trace file="kernel/mediatek/mt8173/3.10/fs/exec.c" id="0" name="TaskComm" symbol="TaskComm">
           <description>bytes 0..15 of tsk-&gt;comm</description>
+        </trace>
+        <trace file="kernel/mediatek/mt8173/3.10/kernel/sched/core.c" id="1" name="CtxSw" symbol="CtxSw">
+          <description>Logs prev and next pids on a context switch.</description>
         </trace>
       </component>
       <component cat="0" fullSymbol="TRAPZ_KERN_FS" id="4" name="Filesystem" symbol="FS">

@@ -13,6 +13,10 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+<!--
+   Copyright (c) 2020 Amazon.com, Inc. or its affiliates.  All rights reserved.
+   PROPRIETARY/CONFIDENTIAL.  USE IS SUBJECT TO LICENSE TERMS.
+-->
 
 <permissions>
 
@@ -37,6 +41,9 @@
     <feature name="amazon.hardware.no_rtc" />
     <!-- TODO: GORDON-7109, remove this once phoenix artifact is properly integrated into FOS -->
     <feature name="com.fireos.sdk.tifextension" version="1" />
+
+    <!-- Is TvProvider backported from FOS7? -->
+    <feature name="com.amazon.feature.fos7_tv_provider" version="1" />
 
     <!-- basic system services -->
     <feature name="android.software.connectionservice" />

@@ -1,0 +1,14 @@
+# full_sloane-user 5.1.1 LVY48F 36.6.6.4_user_664657620 release-keys
+- manufacturer: amazon
+- platform: mt8173
+- codename: sloane
+- flavor: full_sloane-user
+- release: 5.1.1
+- id: LVY48F
+- incremental: 36.6.6.4_user_664657620
+- tags: release-keys
+- fingerprint: Amazon/full_sloane/sloane:5.1.1/LVY48F/36.6.6.4_user_664657620:user/release-keys
+- is_ab: false
+- brand: Amazon
+- branch: full_sloane-user-5.1.1-LVY48F-36.6.6.4_user_664657620-release-keys
+- repo: amazon_sloane_dump
